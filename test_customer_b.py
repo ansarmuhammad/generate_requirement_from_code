@@ -3,11 +3,11 @@ Test: Customer B — Product 0002, Winter, Volume 900, Non-EMEA
 Customer is marked STRATEGIC + INDIVIDUAL with individual rate 1,000
 
 Volume 900 falls in the 5% volume-discount band (≥100 < 1000).
-Discounts are applied sequentially (compound):
-  1. Season (winter): 0%
-  2. Volume (900):    5%  → 900,000 × 5% = 45,000 off, remaining = 855,000
-  3. Category:        5%  → 855,000 × 5% = 42,750 off
-  Total discounts: 87,750  |  Receivable after discount: 812,250
+All discounts applied on the original receivable before discount:
+  1. Season (winter): 0%  → 0
+  2. Volume (900):    5%  → 900,000 × 5% = 45,000
+  3. Category:        5%  → 900,000 × 5% = 45,000
+  Total discounts: 90,000  |  Receivable after discount: 810,000
 
 DataFrame is injected directly so '0002' stays a string.
 """
@@ -48,9 +48,9 @@ class TestCustomerBScenario:
     """Customer B: STRATEGIC + INDIVIDUAL, product 0002, winter, vol 900, Non-EMEA"""
 
     def test_total_receivable(self, processed_calculator):
-        """vol 900 × rate 1,000 = 900,000 → 5% vol + 5% strategic (compound) → 812,250"""
+        """vol 900 × rate 1,000 = 900,000 → 5% vol + 5% strategic on original → 810,000"""
         result = processed_calculator.df.iloc[0]['Total receivables']
-        expected = 812_250.0
+        expected = 810_000.0
         try:
             assert result == expected
             print(f"\nPASSED: Total receivables = {result}")
@@ -116,7 +116,7 @@ class TestDiscountRuleBreakdown:
 
     def test_non_emea_region_loading_is_zero(self):
         """Rule E: Non-EMEA means no regional surcharge"""
-        result = self._calc.calculate_rule_e_region_loading('NON-EMEA', 812_250.0)
+        result = self._calc.calculate_rule_e_region_loading('NON-EMEA', 810_000.0)
         try:
             assert result == 0.0
             print(f"\nPASSED: Rule E region loading (NON-EMEA) = {result}")
