@@ -143,25 +143,10 @@ class PricingCalculator:
             self.df.at[idx, 'Receivable before discount'] = receivable_before
             
             # Calculate total discounts (compound discounts)
-            # Apply discounts sequentially
-            discount_amount = 0
-            remaining = receivable_before
-            
-            # Apply season discount
-            if season_discount > 0:
-                discount_amount += remaining * (season_discount / 100)
-                remaining = remaining * (1 - season_discount / 100)
-            
-            # Apply volume discount
-            if volume_discount > 0:
-                discount_amount += remaining * (volume_discount / 100)
-                remaining = remaining * (1 - volume_discount / 100)
-            
-            # Apply category discount
-            if category_discount > 0:
-                discount_amount += remaining * (category_discount / 100)
-                remaining = remaining * (1 - category_discount / 100)
-            
+            # All discounts applied on the original receivable before discount
+            total_discount_rate = season_discount + volume_discount + category_discount
+            discount_amount = receivable_before * (total_discount_rate / 100)
+
             self.df.at[idx, 'Total discounts'] = discount_amount
             
             # Calculate receivable after discount
