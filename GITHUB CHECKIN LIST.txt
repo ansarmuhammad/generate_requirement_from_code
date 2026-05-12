@@ -11,11 +11,12 @@ GITHUB CHECKIN LIST???
 
 —————————————————
 
-Prompt for THIRD test, follow the structure of the file test_customer_a.py
+Prompt for fourth test, follow the structure of the file test_customer_a.py
 give me a fresh test file that uses pricing_calculator.py to calculate the "total receivable", the customer name is C, 
 product is 0003, 
-season is "winter", 
+season is "spring", 
 volume is 90, 
 region is “EMEA".
 Customer is marked NON-STRATEGIC and is also marked INDIVIDUAL. 
 The individual rate is 1,000. what would be the "receivable before discount", "discount amount" and "receivable after discount"
+
