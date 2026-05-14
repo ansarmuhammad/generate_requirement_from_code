@@ -1,0 +1,26 @@
+Requirement: Build a python program that takes a csv as input, it has the fields:
+-	Customer = can be strategy or non-strategic
+-	Product = can be any product or item
+-	Season = can be spring, summer, winter, autumn
+-	Volume = will be an integer value
+-	Region = can be EMEA or non-EMEA
+-	Discount = calculate using rule A
+-	Volume discount = calculate using rule B
+-	Category discount = calculate using rule C
+-	Status = this is customer status which can be individual or corporate
+-	Individual rate = calculate using rule D
+-	Corporate rate = calculate using rule D
+-	Receivable before discount = Volume * Individual or Corporate Rate
+-	Total discounts = rule A, rule B, rule C applied
+-	Receivable after discount = Receivable before discount – Total discounts
+-	Region loading = calculate using rule E
+-	Total receivables = Receivable-after-discount + Region loading
+-	Comments
+It then processes output based on below rules:
+
+-	Rule A: Spring season has a 5% discount
+-	Rule B: Volume under 100 has 0% discount, volume under 1000 has 5% discount, volume of 1000 and above have 10% discount 
+-	Rule C: Strategic customer gets 5% discount
+-	Rule D: Each product or item has an individual rate and corporate rate
+-	Rule E: EMEA is charged 10% extra on the Receivable after discount
+
