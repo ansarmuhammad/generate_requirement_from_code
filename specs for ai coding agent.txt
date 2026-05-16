@@ -1,5 +1,5 @@
 Requirement: Build a python program that takes a csv as input, it has the fields:
--	Customer = can be strategy or non-strategic
+-	Customer = can be strategic or non-strategic
 -	Product = can be any product or item
 -	Season = can be spring, summer, winter, autumn
 -	Volume = will be an integer value
